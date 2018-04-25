@@ -1,6 +1,11 @@
 class CartItem {
-  final String name;
-  final bool checked;
+  String name;
+  bool checked;
 
   CartItem(this.name, this.checked);
+
+  @override
+  String toString() {
+    return "$name: $checked";
+  }
 }

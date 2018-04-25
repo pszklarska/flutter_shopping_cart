@@ -5,3 +5,9 @@ class AddItemAction {
 
   AddItemAction(this.item);
 }
+
+class ToggleItemStateAction {
+  final CartItem item;
+
+  ToggleItemStateAction(this.item);
+}

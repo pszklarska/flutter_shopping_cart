@@ -6,7 +6,7 @@ import 'package:flutter_shopping_cart/redux/reducers.dart';
 import 'package:redux_dev_tools/redux_dev_tools.dart';
 
 void main() {
-  final store = new DevToolsStore<List<CartItem>>(addItemReducer,
+  final store = new DevToolsStore<List<CartItem>>(cartItemsReducer,
       initialState: new List());
 
 //  final store = new Store<List<String>>(addItemReducer,
