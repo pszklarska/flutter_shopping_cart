@@ -1,5 +1,7 @@
-class AddItemAction {
-  final String itemName;
+import 'package:flutter_shopping_cart/model/CartItem.dart';
 
-  AddItemAction(this.itemName);
+class AddItemAction {
+  final CartItem item;
+
+  AddItemAction(this.item);
 }

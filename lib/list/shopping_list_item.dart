@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shopping_cart/model/CartItem.dart';
 
 class ShoppingListItem extends StatelessWidget {
-  final String itemName;
+  final CartItem item;
 
-  ShoppingListItem(this.itemName);
+  ShoppingListItem(this.item);
 
   @override
   Widget build(BuildContext context) {
     return new ListTile(
-      title: new Text(itemName),
-      leading: new Checkbox(value: true, onChanged: null),
+      title: new Text(item.name),
+      leading: new Checkbox(value: item.checked, onChanged: null),
     );
   }
 }
