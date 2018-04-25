@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_shopping_cart/actions.dart';
+import 'package:flutter_shopping_cart/redux/actions.dart';
 
 class AddItemDialog extends StatelessWidget {
   @override

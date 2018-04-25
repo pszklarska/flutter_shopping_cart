@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_shopping_cart/shopping_cart_app.dart';
-import 'package:flutter_shopping_cart/reducers.dart';
+import 'package:flutter_shopping_cart/redux/reducers.dart';
 import 'package:redux_dev_tools/redux_dev_tools.dart';
 
 void main() {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux_dev_tools/flutter_redux_dev_tools.dart';
-import 'package:flutter_shopping_cart/add_item_dialog.dart';
-import 'package:flutter_shopping_cart/shopping_list.dart';
+import 'package:flutter_shopping_cart/add_item/add_item_dialog.dart';
+import 'package:flutter_shopping_cart/list/shopping_list.dart';
 import 'package:redux_dev_tools/redux_dev_tools.dart';
 
 class ShoppingCartApp extends StatelessWidget {

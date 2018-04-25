@@ -1,4 +1,4 @@
-import 'package:flutter_shopping_cart/actions.dart';
+import 'package:flutter_shopping_cart/redux/actions.dart';
 
 List<String> addItemReducer(List<String> items, dynamic action) {
   if (action is AddItemAction) {
