@@ -37,7 +37,7 @@ class ShoppingCart extends StatelessWidget {
         onPressed: () => _openAddItemDialog(context),
         child: new Icon(Icons.add),
       ),
-      drawer: new Container(
+      endDrawer: new Container(
           width: 240.0,
           color: Colors.white,
           child: new ReduxDevTools(store)),
