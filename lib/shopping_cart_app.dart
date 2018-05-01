@@ -1,29 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_redux_dev_tools/flutter_redux_dev_tools.dart';
 import 'package:flutter_shopping_cart/add_item/add_item_dialog.dart';
 import 'package:flutter_shopping_cart/list/shopping_list.dart';
-import 'package:flutter_shopping_cart/model/CartItem.dart';
+import 'package:flutter_shopping_cart/model/AppState.dart';
 import 'package:redux_dev_tools/redux_dev_tools.dart';
+import 'package:flutter_shopping_cart/redux/reducers.dart';
 
 class ShoppingCartApp extends StatelessWidget {
-  final DevToolsStore<List<CartItem>> store;
-
-  ShoppingCartApp(this.store);
+  final store = new DevToolsStore<AppState>(appStateReducers,
+      initialState: AppState.empty);
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'ShoppingCart',
-      theme: new ThemeData(
-        primarySwatch: Colors.blue,
+    return new StoreProvider<AppState>(
+      store: store,
+      child: new MaterialApp(
+        title: 'ShoppingCart',
+        theme: new ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: new ShoppingCart(store),
       ),
-      home: new ShoppingCart(store),
     );
   }
 }
 
 class ShoppingCart extends StatelessWidget {
-  final DevToolsStore<List<CartItem>> store;
+  final DevToolsStore<AppState> store;
 
   ShoppingCart(this.store);
 

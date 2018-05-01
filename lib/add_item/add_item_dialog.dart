@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_shopping_cart/model/AppState.dart';
 import 'package:flutter_shopping_cart/model/CartItem.dart';
 import 'package:flutter_shopping_cart/redux/actions.dart';
 
 class AddItemDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new StoreConnector<List<CartItem>, OnAddCallback>(
+    return new StoreConnector<AppState, OnAddCallback>(
         converter: (store) {
       return (itemName) =>
           store.dispatch(AddItemAction(CartItem(itemName, false)));
