@@ -11,7 +11,9 @@ const String APP_STATE_KEY = "APP_STATE";
 void storeCartItemsMiddleware(Store<AppState> store, action, NextDispatcher next) {
   next(action);
 
-  if (action is AddItemAction || action is ToggleItemStateAction) {
+  if (action is AddItemAction ||
+      action is ToggleItemStateAction ||
+      action is RemoveItemAction) {
     saveStateToPrefs(store.state);
   }
 

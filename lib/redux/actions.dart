@@ -12,10 +12,16 @@ class ToggleItemStateAction {
   ToggleItemStateAction(this.item);
 }
 
-class FetchItemsAction{}
+class FetchItemsAction {}
 
 class ItemLoadedAction {
   final List<CartItem> items;
 
   ItemLoadedAction(this.items);
+}
+
+class RemoveItemAction {
+  final CartItem item;
+
+  RemoveItemAction(this.item);
 }

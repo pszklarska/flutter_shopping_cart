@@ -7,6 +7,8 @@ AppState appStateReducers(AppState state, dynamic action) {
     return addItem(state.cartItems, action);
   } else if (action is ToggleItemStateAction) {
     return toggleItemState(state.cartItems, action);
+  } else if (action is RemoveItemAction) {
+    return removeItem(state.cartItems, action);
   } else if (action is ItemLoadedAction) {
     return loadItems(action);
   }
@@ -20,6 +22,11 @@ AppState addItem(List<CartItem> items, AddItemAction action) {
 AppState toggleItemState(List<CartItem> items, ToggleItemStateAction action) {
   return new AppState(
       items.map((item) => item.name == action.item.name ? action.item : item).toList());
+}
+
+AppState removeItem(List<CartItem> items, RemoveItemAction action) {
+  return new AppState(
+      List.from(items)..removeWhere((item) => item.name == action.item.name));
 }
 
 AppState loadItems(ItemLoadedAction action) {
