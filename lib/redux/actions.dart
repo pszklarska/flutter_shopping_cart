@@ -11,3 +11,11 @@ class ToggleItemStateAction {
 
   ToggleItemStateAction(this.item);
 }
+
+class FetchItemsAction{}
+
+class ItemLoadedAction {
+  final List<CartItem> items;
+
+  ItemLoadedAction(this.items);
+}

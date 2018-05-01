@@ -4,12 +4,14 @@ import 'package:flutter_redux_dev_tools/flutter_redux_dev_tools.dart';
 import 'package:flutter_shopping_cart/add_item/add_item_dialog.dart';
 import 'package:flutter_shopping_cart/list/shopping_list.dart';
 import 'package:flutter_shopping_cart/model/AppState.dart';
+import 'package:flutter_shopping_cart/redux/actions.dart';
 import 'package:redux_dev_tools/redux_dev_tools.dart';
 import 'package:flutter_shopping_cart/redux/reducers.dart';
+import 'package:flutter_shopping_cart/redux/middleware.dart';
 
 class ShoppingCartApp extends StatelessWidget {
   final store = new DevToolsStore<AppState>(appStateReducers,
-      initialState: AppState.empty);
+      initialState: AppState.empty, middleware: [storeCartItemsMiddleware]);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,9 @@ class ShoppingCartApp extends StatelessWidget {
         theme: new ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: new ShoppingCart(store),
+        home: new StoreBuilder<AppState>(
+            onInit: (store) => store.dispatch(new FetchItemsAction()),
+            builder: (context, store) => new ShoppingCart(store)),
       ),
     );
   }

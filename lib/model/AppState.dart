@@ -7,6 +7,13 @@ class AppState {
 
   AppState(this.cartItems);
 
+  AppState.fromJson(Map<String, dynamic> json)
+      : cartItems = (json['cartItems'] as List)
+            .map((i) => new CartItem.fromJson(i as Map<String, dynamic>))
+            .toList();
+
+  Map<String, dynamic> toJson() => {'cartItems': cartItems};
+
   @override
   String toString() => "$cartItems";
 }
