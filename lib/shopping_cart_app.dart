@@ -18,7 +18,7 @@ class ShoppingCartApp extends StatelessWidget {
     return new StoreProvider<AppState>(
       store: store,
       child: new MaterialApp(
-        title: 'ShoppingCart',
+        title: 'ShoppingList',
         theme: new ThemeData(
           primarySwatch: Colors.blue,
         ),
@@ -39,7 +39,7 @@ class ShoppingCart extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('ShoppingCart'),
+        title: new Text('ShoppingList'),
       ),
       body: new ShoppingList(),
       floatingActionButton: new FloatingActionButton(
@@ -47,14 +47,11 @@ class ShoppingCart extends StatelessWidget {
         child: new Icon(Icons.add),
       ),
       endDrawer: new Container(
-          width: 240.0,
-          color: Colors.white,
-          child: new ReduxDevTools(store)),
+          width: 240.0, color: Colors.white, child: new ReduxDevTools(store)),
     );
   }
 }
 
 _openAddItemDialog(BuildContext context) {
-  showDialog(
-      context: context, builder: (context) => new AddItemDialog());
+  showDialog(context: context, builder: (context) => new AddItemDialog());
 }
