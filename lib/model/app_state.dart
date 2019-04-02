@@ -1,4 +1,4 @@
-import 'package:flutter_shopping_cart/model/CartItem.dart';
+import 'package:flutter_shopping_cart/model/cart_item.dart';
 
 class AppState {
   static var empty = AppState(new List());

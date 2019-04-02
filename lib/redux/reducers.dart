@@ -1,5 +1,5 @@
-import 'package:flutter_shopping_cart/model/AppState.dart';
-import 'package:flutter_shopping_cart/model/CartItem.dart';
+import 'package:flutter_shopping_cart/model/app_state.dart';
+import 'package:flutter_shopping_cart/model/cart_item.dart';
 import 'package:flutter_shopping_cart/redux/actions.dart';
 
 AppState appStateReducers(AppState state, dynamic action) {
@@ -16,19 +16,17 @@ AppState appStateReducers(AppState state, dynamic action) {
 }
 
 AppState addItem(List<CartItem> items, AddItemAction action) {
-  return new AppState(List.from(items)..add(action.item));
+  return AppState(List.from(items)..add(action.item));
 }
 
 AppState toggleItemState(List<CartItem> items, ToggleItemStateAction action) {
-  return new AppState(
-      items.map((item) => item.name == action.item.name ? action.item : item).toList());
+  return AppState(items.map((item) => item.name == action.item.name ? action.item : item).toList());
 }
 
 AppState removeItem(List<CartItem> items, RemoveItemAction action) {
-  return new AppState(
-      List.from(items)..removeWhere((item) => item.name == action.item.name));
+  return AppState(List.from(items)..removeWhere((item) => item.name == action.item.name));
 }
 
 AppState loadItems(ItemLoadedAction action) {
-  return new AppState(action.items);
+  return AppState(action.items);
 }
