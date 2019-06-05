@@ -17,10 +17,10 @@ class ApiMiddleware extends MiddlewareClass<AppState> {
     next(action);
   }
 
-  Future<dynamic> _fetchCartItems(Store<AppState> store, FetchCartItemsAction action) {
-    return apiClient.fetchCartItems().then((result) {
-      store.dispatch(CartItemsFetchedAction(result));
-      action.completer.complete();
-    });
+  Future _fetchCartItems(Store<AppState> store, FetchCartItemsAction action) async {
+    action.callback(true);
+    var cartItems = await apiClient.fetchCartItems();
+    store.dispatch(CartItemsFetchedAction(cartItems));
+    action.callback(false);
   }
 }
