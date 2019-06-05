@@ -11,7 +11,7 @@ dependencies:
 
   flutter_redux: ^0.5.3
   flutter_redux_dev_tools: ^0.3.0
-  shared_preferences: ^0.5.1+2
+  shared_preferences: ^0.5.0
   cupertino_icons: ^0.1.2
 
 dev_dependencies:
