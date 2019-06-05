@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_shopping_cart/model/cart_item.dart';
 
 class AddItemAction {
@@ -24,4 +26,17 @@ class RemoveItemAction {
   final CartItem item;
 
   RemoveItemAction(this.item);
+}
+
+class FetchCartItemsAction {
+  final Completer completer;
+
+  FetchCartItemsAction({Completer completer})
+      : this.completer = completer ?? new Completer();
+}
+
+class CartItemsFetchedAction {
+  final List<CartItem> cartItems;
+
+  CartItemsFetchedAction(this.cartItems);
 }

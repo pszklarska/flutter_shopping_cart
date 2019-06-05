@@ -11,7 +11,10 @@ AppState appStateReducers(AppState state, dynamic action) {
     return removeItem(state.cartItems, action);
   } else if (action is ItemLoadedAction) {
     return loadItems(action);
+  } else if (action is CartItemsFetchedAction) {
+    return fetchItems(action);
   }
+
   return state;
 }
 
@@ -29,4 +32,8 @@ AppState removeItem(List<CartItem> items, RemoveItemAction action) {
 
 AppState loadItems(ItemLoadedAction action) {
   return AppState(action.items);
+}
+
+AppState fetchItems(CartItemsFetchedAction action) {
+  return AppState(action.cartItems);
 }
