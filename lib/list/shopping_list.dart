@@ -3,6 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_shopping_cart/list/shopping_list_item.dart';
 import 'package:flutter_shopping_cart/model/app_state.dart';
 import 'package:flutter_shopping_cart/model/cart_item.dart';
+import 'package:redux/redux.dart';
 
 class ShoppingList extends StatelessWidget {
   @override
