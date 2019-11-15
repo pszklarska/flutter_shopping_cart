@@ -12,7 +12,7 @@ Store<AppState> createReduxStore() {
 
   return DevToolsStore<AppState>(
     appStateReducers,
-    initialState: AppState.empty,
+    initialState: AppState.empty(),
     middleware: [
       ApiMiddleware(apiClient),
       PrefsMiddleware(),
@@ -22,12 +22,13 @@ Store<AppState> createReduxStore() {
 }
 
 class LoggingMiddleware extends MiddlewareClass<AppState> {
-
   @override
   void call(Store<AppState> store, action, NextDispatcher next) {
     next(action);
 
-    print('Action: $action');
-    print('State: ${store.state.toJson()}');
+    if (action is! DevToolsAction) {
+      print('Action: $action');
+      print('State: ${store.state.toJson()}');
+    }
   }
 }

@@ -9,7 +9,7 @@ class ApiMiddleware extends MiddlewareClass<AppState> {
   ApiMiddleware(this.apiClient);
 
   @override
-  void call(Store<AppState> store, action, NextDispatcher next) async {
+  Future call(Store<AppState> store, action, NextDispatcher next) async {
     if (action is FetchCartItemsAction) {
       return _fetchCartItems(store, action);
     }
@@ -20,7 +20,7 @@ class ApiMiddleware extends MiddlewareClass<AppState> {
   Future _fetchCartItems(Store<AppState> store, FetchCartItemsAction action) async {
     action.callback(true);
     var cartItems = await apiClient.fetchCartItems();
-    store.dispatch(CartItemsFetchedAction(cartItems));
+    store.dispatch(ItemLoadedAction(cartItems));
     action.callback(false);
   }
 }
