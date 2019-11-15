@@ -33,6 +33,7 @@ class PrefsMiddleware extends MiddlewareClass<AppState> {
   Future _loadStateFromPrefs(Store<AppState> store) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     var stateString = preferences.getString(APP_STATE_KEY);
+    if (stateString == null) return;
     var state = AppState.fromJson(json.decode(stateString));
     store.dispatch(ItemLoadedAction(state.cartItems));
   }

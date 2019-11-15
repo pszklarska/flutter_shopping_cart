@@ -16,6 +16,18 @@ Store<AppState> createReduxStore() {
     middleware: [
       ApiMiddleware(apiClient),
       PrefsMiddleware(),
+      LoggingMiddleware(),
     ],
   );
+}
+
+class LoggingMiddleware extends MiddlewareClass<AppState> {
+
+  @override
+  void call(Store<AppState> store, action, NextDispatcher next) {
+    next(action);
+
+    print('Action: $action');
+    print('State: ${store.state.toJson()}');
+  }
 }

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter_shopping_cart/list/shopping_list.dart';
 import 'package:flutter_shopping_cart/model/cart_item.dart';
 
@@ -33,7 +31,6 @@ class FetchCartItemsAction {
   final OnStateChanged callback;
 
   FetchCartItemsAction(this.callback);
-
 }
 
 class CartItemsFetchedAction {
