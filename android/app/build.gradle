@@ -27,7 +27,6 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "pl.pszklarska.fluttershoppingcart"
         minSdkVersion 16
         targetSdkVersion 27

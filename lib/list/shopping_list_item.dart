@@ -14,7 +14,7 @@ class ShoppingListItem extends StatelessWidget {
     return ListTile(
       title: Text(item.name),
       leading: StoreConnector<AppState, OnStateChanged>(converter: (store) {
-        return (item) => store.dispatch(ToggleItemStateAction(item));
+        return (item) => store.dispatch(ToggleItemStateAction(item.name));
       }, builder: (context, callback) {
         return Checkbox(
             value: item.checked,
