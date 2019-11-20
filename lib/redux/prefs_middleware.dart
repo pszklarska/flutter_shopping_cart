@@ -9,8 +9,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 const String APP_STATE_KEY = "APP_STATE";
 
 class PrefsMiddleware extends MiddlewareClass<AppState> {
+  final SharedPreferences preferences;
+
+  PrefsMiddleware(this.preferences);
+
   @override
-  void call(Store<AppState> store, action, NextDispatcher next) async {
+  Future<void> call(Store<AppState> store, action, NextDispatcher next) async {
     if (action is AddItemAction ||
         action is ToggleItemStateAction ||
         action is RemoveItemAction) {
@@ -25,13 +29,11 @@ class PrefsMiddleware extends MiddlewareClass<AppState> {
   }
 
   Future _saveStateToPrefs(AppState state) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
     var stateString = json.encode(state.toJson());
     await preferences.setString(APP_STATE_KEY, stateString);
   }
 
   Future _loadStateFromPrefs(Store<AppState> store) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
     var stateString = preferences.getString(APP_STATE_KEY);
     if (stateString == null) return;
     var state = AppState.fromJson(json.decode(stateString));

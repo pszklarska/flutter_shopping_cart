@@ -45,8 +45,8 @@ class AddItemDialogWidgetState extends State<AddItemDialogWidget> {
           Expanded(
             child: TextField(
               autofocus: true,
-              decoration:
-                  InputDecoration(labelText: 'Item name', hintText: 'eg. Red Apples'),
+              decoration: InputDecoration(
+                  labelText: 'Item name', hintText: 'eg. Red Apples'),
               onChanged: _handleTextChanged,
             ),
           )

@@ -17,7 +17,8 @@ class ApiMiddleware extends MiddlewareClass<AppState> {
     next(action);
   }
 
-  Future _fetchCartItems(Store<AppState> store, FetchCartItemsAction action) async {
+  Future _fetchCartItems(
+      Store<AppState> store, FetchCartItemsAction action) async {
     action.callback(true);
     var cartItems = await apiClient.fetchCartItems();
     store.dispatch(ItemLoadedAction(cartItems));

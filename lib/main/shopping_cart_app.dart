@@ -55,8 +55,8 @@ class ShoppingCart extends StatelessWidget {
       ),
     );
   }
-}
 
-_openAddItemDialog(BuildContext context) {
-  showDialog(context: context, builder: (context) => AddItemDialog());
+  void _openAddItemDialog(BuildContext context) {
+    showDialog(context: context, builder: (context) => AddItemDialog());
+  }
 }

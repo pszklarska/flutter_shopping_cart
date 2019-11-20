@@ -8,8 +8,10 @@ Application has some features already implemented:
 - [X] Adding items to list
 - [X] Marking items as checked
 - [X] Removing items
-- [X] Storing persistant state using [shared_preferences](https://pub.dartlang.org/packages/shared_preferences) package
+- [X] Storing persistent state using [shared_preferences](https://pub.dartlang.org/packages/shared_preferences) package
 - [X] TimeTravel using [flutter_redux_dev_tools](https://pub.dartlang.org/packages/flutter_redux_dev_tools) package
+- [X] Fetching data from the (mocked) API
+- [X] Unit tests
 
 ## Screenshots
 ![Home Screenshot](https://github.com/pszklarska/FlutterShoppingCart/blob/master/img/screen1.png)

@@ -8,8 +8,8 @@ class AppState extends Equatable {
 
   AppState.fromJson(Map<String, dynamic> json)
       : cartItems = (json['cartItems'] as List)
-            .map((i) => new CartItem.fromJson(i as Map<String, dynamic>))
-            .toList();
+            ?.map((i) => new CartItem.fromJson(i as Map<String, dynamic>))
+            ?.toList();
 
   factory AppState.empty() => AppState(new List());
 

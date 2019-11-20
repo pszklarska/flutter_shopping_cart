@@ -7,10 +7,8 @@ class BottomCartBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, int>(
-      converter: (Store<AppState> store) => store
-          .state.cartItems
-          .where((item) => item.checked)
-          .length,
+      converter: (Store<AppState> store) =>
+          store.state.cartItems.where((item) => item.checked).length,
       builder: (BuildContext context, int cartItemsLength) {
         return Container(
           color: Colors.grey[800],
