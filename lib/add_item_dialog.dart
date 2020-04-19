@@ -1,33 +1,45 @@
 import 'package:flutter/material.dart';
 
-class AddItemDialog extends StatelessWidget {
+class AddItemDialog extends StatefulWidget {
+  @override
+  _AddItemDialogState createState() => _AddItemDialogState();
+}
+
+class _AddItemDialogState extends State<AddItemDialog> {
+  final TextEditingController _textController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return new AlertDialog(
-      contentPadding: const EdgeInsets.all(16.0),
-      content: new Row(
+    return AlertDialog(
+      contentPadding: EdgeInsets.all(16.0),
+      content: Row(
         children: <Widget>[
-          new Expanded(
-            child: new TextField(
+          Expanded(
+            child: TextField(
+              controller: _textController,
               autofocus: true,
-              decoration: new InputDecoration(
+              decoration: InputDecoration(
                   labelText: 'Item name', hintText: 'eg. Red Apples'),
             ),
           )
         ],
       ),
       actions: <Widget>[
-        new FlatButton(
-            child: const Text('CANCEL'),
-            onPressed: () {
-              Navigator.pop(context);
-            }),
-        new FlatButton(
-            child: const Text('ADD'),
-            onPressed: () {
-              Navigator.pop(context);
-            })
+        FlatButton(
+          child: Text('CANCEL'),
+          onPressed: () => Navigator.pop(context),
+        ),
+        FlatButton(
+          child: Text('ADD'),
+          onPressed: () => Navigator.pop(context, _textController.text),
+        )
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _textController.dispose();
   }
 }
