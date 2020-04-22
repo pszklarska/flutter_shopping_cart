@@ -6,6 +6,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^0.1.3
   flutter_redux: ^0.6.0
+  redux_dev_tools: ^0.5.2
+  flutter_redux_dev_tools: ^0.4.0
 
 dev_dependencies:
   flutter_test:

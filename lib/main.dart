@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_redux_dev_tools/flutter_redux_dev_tools.dart';
 import 'package:flutter_shopping_cart/actions.dart';
 import 'package:redux/redux.dart';
+import 'package:redux_dev_tools/redux_dev_tools.dart';
 
 import 'add_item_dialog.dart';
 import 'cart_item.dart';
 import 'reducers.dart';
 
+final Store<List<CartItem>> store = DevToolsStore<List<CartItem>>(
+  appReducers,
+  initialState: List<CartItem>(),
+);
+
 void main() => runApp(
       StoreProvider(
-        store: Store<List<CartItem>>(
-          appReducers,
-          initialState: List<CartItem>(),
-        ),
+        store: store,
         child: MaterialApp(
           title: 'ShoppingCart',
           home: ShoppingCartApp(),
@@ -32,6 +36,10 @@ class ShoppingCartApp extends StatelessWidget {
       ),
       builder: (context, viewModel) {
         return Scaffold(
+          endDrawer: Container(
+            color: Colors.white,
+            child: ReduxDevTools<List<CartItem>>(store),
+          ),
           appBar: AppBar(
             title: Text('ShoppingCart'),
           ),
