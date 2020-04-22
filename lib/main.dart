@@ -1,67 +1,80 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_cart/add_item_dialog.dart';
-import 'package:flutter_shopping_cart/cart_item.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_shopping_cart/actions.dart';
+import 'package:redux/redux.dart';
+
+import 'add_item_dialog.dart';
+import 'cart_item.dart';
+import 'reducers.dart';
 
 void main() => runApp(
-      MaterialApp(
-        title: 'ShoppingCart',
-        home: ShoppingCartApp(),
+      StoreProvider(
+        store: Store<List<CartItem>>(
+          appReducers,
+          initialState: List<CartItem>(),
+        ),
+        child: MaterialApp(
+          title: 'ShoppingCart',
+          home: ShoppingCartApp(),
+        ),
       ),
     );
 
-class ShoppingCartApp extends StatefulWidget {
-  @override
-  _ShoppingCartAppState createState() => _ShoppingCartAppState();
-}
-
-class _ShoppingCartAppState extends State<ShoppingCartApp> {
-  List<CartItem> items = [];
-
+class ShoppingCartApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('ShoppingCart'),
+    return StoreConnector<List<CartItem>, ShoppingCartViewModel>(
+      converter: (store) => ShoppingCartViewModel(
+        items: store.state,
+        onCartItemAdded: (cartItem) => store.dispatch(AddItemAction(cartItem)),
+        onCartItemChanged: (cartItem) =>
+            store.dispatch(ToggleItemStateAction(cartItem)),
       ),
-      body: ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (context, position) {
-          final CartItem cartItem = items[position];
-          return ListTile(
-            title: Text(cartItem.name),
-            leading: Checkbox(
-              value: cartItem.checked,
-              onChanged: (newValue) => _onCartItemChanged(cartItem),
-            ),
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _showAddItemDialog(context),
-        child: Icon(Icons.add),
-      ),
+      builder: (context, viewModel) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('ShoppingCart'),
+          ),
+          body: ListView.builder(
+            itemCount: viewModel.items.length,
+            itemBuilder: (context, position) {
+              final CartItem cartItem = viewModel.items[position];
+              return ListTile(
+                title: Text(cartItem.name),
+                leading: Checkbox(
+                  value: cartItem.checked,
+                  onChanged: (newValue) =>
+                      viewModel.onCartItemChanged(cartItem),
+                ),
+              );
+            },
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () async {
+              final String newCartItemName = await showDialog<String>(
+                context: context,
+                builder: (context) => AddItemDialog(),
+              );
+              if (newCartItemName != null) {
+                viewModel.onCartItemAdded(CartItem(newCartItemName, false));
+              }
+            },
+            child: Icon(Icons.add),
+          ),
+        );
+      },
     );
   }
+}
 
-  void _onCartItemChanged(CartItem cartItem) {
-    setState(() {
-      items = items
-          .map((item) => item.name == cartItem.name
-              ? CartItem(cartItem.name, !item.checked)
-              : item)
-          .toList();
-    });
-  }
+class ShoppingCartViewModel {
+  final List<CartItem> items;
+  final Function(CartItem) onCartItemAdded;
+  final Function(CartItem) onCartItemChanged;
 
-  Future _showAddItemDialog(BuildContext context) async {
-    final String newCartItemName = await showDialog<String>(
-      context: context,
-      builder: (context) => AddItemDialog(),
-    );
-    if (newCartItemName != null) {
-      setState(() {
-        items = items..add(CartItem(newCartItemName, false));
-      });
-    }
-  }
+  ShoppingCartViewModel({
+    this.items,
+    this.onCartItemAdded,
+    this.onCartItemChanged,
+  });
 }
